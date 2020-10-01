@@ -1,0 +1,16 @@
+version: "2"
+services:
+  mysqldb:
+    image: mysql:5.7
+    container_name: mysqldb
+    command: mysqld --user=root --verbose
+    volumes:
+       - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports:
+      - "4406:3000"
+    environment:
+      MYSQL_DATABASE: "test"
+      MYSQL_USER: "test"
+      MYSQL_PASSWORD: "test"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
